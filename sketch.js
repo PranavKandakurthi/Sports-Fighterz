@@ -28,7 +28,7 @@ function preload(){
   shield = loadImage("images/SHIELD.png");
   
 
-  //right oriented player images
+  //right oriented player images 
   basketballRight = loadImage("images/Basketball_BrianRight.png");
   golfRight = loadImage("images/Golf_GabeRight.png");
   rugbyRight = loadImage("images/Rugby_RuthRight.png");
