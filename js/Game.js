@@ -2,6 +2,7 @@ class Game {
     constructor() {
   
     }
+
     getState() {
       var gameStateRef = database.ref('gameState');
       gameStateRef.on("value", function (data) {
@@ -23,7 +24,7 @@ class Game {
           playerCount = playerCountRef.val();
           player.getCount();
         }
-        form = new Form()
+        form = new Form();
         form.display();
       }
 
@@ -154,4 +155,5 @@ class Game {
      // textSize(40)
      // text("GAME OVER!", 350,300)
     }
+    
   }
