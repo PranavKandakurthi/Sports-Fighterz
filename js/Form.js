@@ -6,6 +6,7 @@ class Form{
        this.title = createElement('h2');
        this.reset = createButton('Reset');
        this.sel = createSelect();
+       this.sbutton = createButton('Sheild')
 
        this.selectedItem = null;
     }
@@ -15,6 +16,10 @@ class Form{
         this.input.hide();
         this.title.hide();
         this.sel.hide();
+    }
+
+    show(){
+        this.sbutton.show();
     }
     display() {
         
@@ -36,6 +41,11 @@ class Form{
         this.reset.style('width', '100px');
         this.reset.style('height', '30px');
         this.reset.style('background', 'orange');
+        this.sbutton.position(1000,110);
+        this.sbutton.style('width', '50px');
+        this.sbutton.style('height', '50px');
+        this.sbutton.style('background', 'blue');
+        this.sbutton.hide();
 
 
         this.sel.position(200,200);
@@ -46,12 +56,17 @@ class Form{
         this.sel.option("tennis");
         this.sel.option("volleyball");
 
-      
+        this.sbutton.mousePressed(() =>{
+
+//adding the function for the buttons.
 
 
+
+        });
         this.button.mousePressed(() => {
             this.input.hide();
             this.button.hide();
+            this.sbutton.show();
 
             player.costume = this.sel.value();
             player.name = this.input.value();
