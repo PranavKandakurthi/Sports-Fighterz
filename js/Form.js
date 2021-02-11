@@ -16,11 +16,10 @@ class Form{
         this.input.hide();
         this.title.hide();
         this.sel.hide();
-    }
-
-    show(){
         this.sbutton.show();
     }
+
+    
     display() {
         
         image(startback, 0, 0, 1000, 800);
@@ -66,7 +65,7 @@ class Form{
         this.button.mousePressed(() => {
             this.input.hide();
             this.button.hide();
-            this.sbutton.show();
+        
 
             player.costume = this.sel.value();
             player.name = this.input.value();
@@ -86,6 +85,12 @@ class Form{
             player.updateCount(0);
             game.update(0);
         });
+
+        this.sbutton.mousePressed(() => {
+            Game.gene()
+          });
+
+        
 
     }
 }
