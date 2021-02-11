@@ -23,6 +23,7 @@ class Game {
         if (playerCountRef.exists()) {
           playerCount = playerCountRef.val();
           player.getCount();
+          
         }
         form = new Form();
         form.display();
@@ -36,11 +37,26 @@ class Game {
   
     play() {
   
-      form.hide();
-      Player.getPlayerInfo();
-    
+        form.greeting.hide();
+        form.button.hide();
+        form.input.hide();
+        form.title.hide();
+        form.sel.hide();
+        form.sbutton.show();
+      Player.getPlayerInfo();     
       background(back_img);
       image(back_img, 0, 0, 1000, 800);
+
+      if(player.health === 3){
+        image(health4,30,50);
+      }else if(player.health === 2){
+        image(health3,30,50);
+      }else if(player.health ===0){
+        image(health2,30,50);
+      }else{
+        image(health1,30,50);
+      }
+
      var x = 100;
       var y = 200;
       var index = 0;
@@ -50,10 +66,10 @@ class Game {
         if (plr == "player1" || plr === "player2") {
   
           index = index + 1;
-          x = x + 600
+          x = displayWidth-allPlayers[plr].distance;
           y = 500;
   
-      //     players[index - 1].x = x;
+         players[index - 1].x = x;
          players[index - 1].y = y;
 
           switch(allPlayers[plr].costume){
@@ -72,19 +88,11 @@ class Game {
             default : break;
           }
   
-          if (index === player.index) {
-            // to display player name on the basket.
-            stroke("black");
-            textSize(25);
-            fill("black");
-            text(allPlayers[plr].name ,x-25,y+25);  
-          }
+
+          
   
-          //text to display player score.
-          stroke("white");
-          textSize(25);
-          fill("white");
-          text(`Player${index}:${allPlayers[plr].score}`, 50, index * 50);
+          
+       
         }
       }
   
@@ -136,24 +144,31 @@ class Game {
         player.update();
       }
   
+
+      if(mouseIsPressed && (players[player.index-1].x-mouseX < 0)){
+        player.distance +=20;
+        player.update();
+        
+      }else if(mouseIsPressed && (players[player.index-1].x-mouseX >= 0)) {
+        player.distace -=20;
+        player.update();
+        //players[player.index-1].x =  player.distance;   
+      }
   
+      if(form.gene){
+        if (index === player.index) {
+          text(allPlayers[plr].name ,x-25,y+25);
+          }
      
   
   
-  if (player.score >= 100){
+  if (player.health <= 0){
     this.end()
   }
   
   
     }
   
-    end() {
-     // console.log("Game Ended");
-     // game.update(2);
-     // clear();
-     // fill("blue")
-     // textSize(40)
-     // text("GAME OVER!", 350,300)
-    }
     
   }
+}
