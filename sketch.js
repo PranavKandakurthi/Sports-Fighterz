@@ -23,12 +23,17 @@ var soccerRight;
 var tennisRight;
 var volleyballRight;
 var shield, shieldblockRight, shieldblockLeft
+var health1, health2, health3, health4
 
 function preload(){
   shield = loadImage("images/SHIELD.png");
+  health1 = loadImage("images/0h.png")
+  health2 = loadImage("images/1h.png")
+  health3 = loadImage("images/2h.png")
+  health4 = loadImage("images/3h.png")
   
 
-  //right oriented player images 
+  //right oriented player images
   basketballRight = loadImage("images/Basketball_BrianRight.png");
   golfRight = loadImage("images/Golf_GabeRight.png");
   rugbyRight = loadImage("images/Rugby_RuthRight.png");
@@ -48,6 +53,8 @@ function preload(){
 
   startback = loadImage("images/starterimage.png")
   back_img = loadImage("images/backwall.jpg");
+
+  
   
 }
 function setup() {
