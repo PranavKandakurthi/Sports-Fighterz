@@ -32,11 +32,22 @@ class Game {
       player1 = createSprite(200, 500);
       player2 = createSprite(800, 500);
       players = [player1, player2];
-  
+
+
+      sheildobjLeft = createSprite(300,500);
+      sheildobjLeft.addImage(shieldblockRight);
+      sheildobjLeft.scale = 0.55;
+      sheildobjLeft.visible = false;
+
+      sheildobjRight = createSprite(750,500);
+      sheildobjRight.addImage(shieldblockLeft);
+      sheildobjRight.scale = 0.55;
+      sheildobjRight.visible = false;  
+
     }
   
     play() {
-  
+      
         form.greeting.hide();
         form.button.hide();
         form.input.hide();
@@ -47,14 +58,14 @@ class Game {
       background(back_img);
       image(back_img, 0, 0, 1000, 800);
 
-      if(player.health === 3){
-        image(health4,30,50);
-      }else if(player.health === 2){
+      if(player.health === 2){
         image(health3,30,50);
-      }else if(player.health ===0){
+      }else if(player.health === 1){
         image(health2,30,50);
+      }else if(player.health <= 0){
+      image(health1,30,50);
       }else{
-        image(health1,30,50);
+        image(health4,30,50);
       }
 
      var x = 100;
@@ -88,12 +99,15 @@ class Game {
             default : break;
           }
   
+          if(sheildobjRight.visible === true){
+            players[index-1].collide(sheildobjRight);
+           }
+   
+           if(sheildobjLeft.visible === true){
+             players[index-1].collide(sheildobjLeft);
+           }
 
-          
-  
-          
-       
-        }
+          }
       }
   
       
@@ -118,7 +132,8 @@ class Game {
           }
           player.orientation = "right"
         }
-       
+
+        player.distance -= 5;
         player.update();
       }
       if (keyIsDown(LEFT_ARROW) && player.index !== null) {
@@ -141,34 +156,38 @@ class Game {
           }
           player.orientation = "left"
         }
+        player.distance += 5;
         player.update();
       }
   
 
-      if(mouseIsPressed && (players[player.index-1].x-mouseX < 0)){
-        player.distance +=20;
-        player.update();
-        
-      }else if(mouseIsPressed && (players[player.index-1].x-mouseX >= 0)) {
-        player.distace -=20;
-        player.update();
-        //players[player.index-1].x =  player.distance;   
-      }
-  
-      if(form.gene){
-        if (index === player.index) {
-          text(allPlayers[plr].name ,x-25,y+25);
-          }
-     
+   
+      if(keyWentDown("v")){
+        //delay(2);
+        player.health -=1;
+        player.update()
+     }
+
+      
   
   
   if (player.health <= 0){
-    this.end()
+    this.end();
   }
   
   
-    }
-  
-    
   }
+  end(){
+    var wda = createSprite(500,300,1000, 600);
+    wda.shapeColor = "white"
+    wda.display();
+    form.sbutton.hide()
+    push()
+    fill("black")
+    textSize(40)
+    textFont("bold")
+    text("You Loose! Other Team wins!", 250,300)
+    pop()
+  }
+     
 }
